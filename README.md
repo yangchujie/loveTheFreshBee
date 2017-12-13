@@ -1,1 +1,4 @@
-# glowing-guide
+# 爱鲜蜂移动端仿写
+
+所用框架：angular2.0
+
