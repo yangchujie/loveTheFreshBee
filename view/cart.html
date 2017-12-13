@@ -1,0 +1,36 @@
+<div class="header">购物车</div>
+<div class="nothingExist" ng-show="isProductExist">
+    <div class="emptyReminder">
+        <div class="notice_pic"></div>
+        <p>亲，购物车空空的耶~</p>
+        <span><a href="#/homePage">去逛逛</a></span>
+    </div>
+</div>
+<div class="cart_contain">
+    <ul>
+        <li ng-repeat="(index,item) in cartData">
+            <div class="choice_product">
+                <i ng-click="oneSelect(item)" ng-class="{false:'active'}[item.selectBol]"></i>
+            </div>
+            <div class="cart_product">
+                <img src="{{item.img}}" alt="">
+                <div>
+                    <p>{{item.name}}</p>
+                    <div class="cart_priceNum">
+                        <span class="cart_price">￥{{item.price}}</span>
+                        <span class="cart_sub" ng-click="subProduct(item)">-</span>
+                        <span class="cart_num">{{item.num}}</span>
+                        <span class="cart_add" ng-click="addProduct(item)">+</span>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+    <div class="totalPrice">
+        <div class="select_all"><i ng-click="selectAll()" ng-class="{false:'active'}[isClickBol]"></i></div>
+        <span>全选</span>
+        共：
+        <span>￥{{total()}}</span>
+        <div class="select_over">选好了</div>
+    </div>
+</div>

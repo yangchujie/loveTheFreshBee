@@ -1,0 +1,47 @@
+<header>
+    <div class="user_position">
+        <span>驼房营路附近▼</span>
+    </div>
+    <span>
+            <span>搜索</span>
+        </span>
+</header>
+<ul class="category_options">
+    <li ng-repeat="(index,item) in categories" ng-click="getCategoryId(item.id,index)"><span ng-class="{true:'active'}[categoryActiveId==item.id]">{{item.name}}</span></li>
+</ul>
+<div class="product_lists">
+    <div class="product_filter">
+        <div class="filter_all" ng-click="filterBol=!filterBol;sortBol=false" >
+            <span>全部分类</span>
+            <i ng-class="{true:'active'}[filterBol]"></i>
+        </div>
+        <div class="filter_order" ng-click="sortBol=!sortBol;filterBol=false">
+            <span>综合排序</span>
+            <i ng-class="{true:'active'}[sortBol]"></i>
+        </div>
+    </div>
+    <ul class="product_filter_item" ng-show="filterBol">
+        <li ng-repeat="(index,item) in categories[activeIndex].cids" ng-click="getDesignate(index,item)" ng-class="{true:'active'}[designate==index]">{{item.name}}</li>
+    </ul>
+    <ul class="product_filter_item" ng-show="sortBol">
+        <li ng-repeat="(index,item) in sortList" ng-click="changeSort(index,item)" ng-class="{true:'active'}[sortIndex==index]">{{item}}</li>
+    </ul>
+    <div class="product_mask" ng-show="filterBol||sortBol"></div>
+    <ul class="product_listShow">
+        <li ng-repeat="(index,item) in products[categoryActiveId] | filter:cidFilter | orderBy: sortType: priceSortBol">
+            <img src="{{item.img}}" alt="">
+            <div>
+                <p>{{item.name}}</p>
+                <div>
+                    <div class="product_numPrice">
+                        <span>{{item.specifics}}</span><span>￥{{item.price}}</span>
+                    </div>
+                    <div class="product_operate">
+                        <span class="product_numOperate"></span>
+                        <span class="inner">+</span>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
